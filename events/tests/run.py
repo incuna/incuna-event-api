@@ -38,7 +38,7 @@ from django.test.runner import DiscoverRunner
 class Runner(ColourRunnerMixin, DiscoverRunner):
     pass
 
-test_runner = DiscoverRunner(verbosity=1)
+test_runner = Runner(verbosity=1)
 failures = test_runner.run_tests(['events'])
 if failures:
     sys.exit(1)
