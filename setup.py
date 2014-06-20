@@ -5,7 +5,7 @@ version = '0.0.1'
 
 
 install_requires = (
-    'djangorestframework>=2.3.13,<3',
+    'djangorestframework>=2.3.14,<3',
 )
 
 setup(
