@@ -13,6 +13,9 @@ settings.configure(
         'default': dj_database_url.config(default='postgres://localhost/event_api'),
     },
     INSTALLED_APPS=(
+        'events',
+        'events.tests.dummy',
+
         # Put contenttypes before auth to work around test issue.
         # See: https://code.djangoproject.com/ticket/10827#comment:12
         'django.contrib.sites',

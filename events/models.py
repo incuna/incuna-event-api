@@ -11,3 +11,6 @@ class Event(models.Model):
     object = GenericForeignKey()
     time = models.DateTimeField(default=timezone.now)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True)
+
+    def __str__(self):
+        return '{}: {}'.format(self.object, self.time)

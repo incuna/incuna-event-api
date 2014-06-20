@@ -2,4 +2,5 @@
 colour-runner==0.0.4
 django==1.6.2
 dj_database_url==0.3.0
+factory-boy==2.3.1
 psycopg2==2.5.2
