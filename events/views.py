@@ -1,3 +1,6 @@
-from django.shortcuts import render
+from rest_framework import generics
 
-# Create your views here.
+
+class BaseEventView(generics.CreateAPIView):
+    def pre_save(self, obj):
+        obj.user = self.request.user
