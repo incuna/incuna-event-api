@@ -1,0 +1,13 @@
+language: python
+python:
+  - 3.4
+script: make test
+notifications:
+  email: false
+addons:
+  postgresql: "9.3"
+env:
+  - DATABASE_URL='postgres://postgres@localhost/event_api'
+install:
+  - psql -c 'CREATE DATABASE event_api' -U postgres;
+  - pip install -r test_requirements.txt
