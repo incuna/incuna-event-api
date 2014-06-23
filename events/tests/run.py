@@ -26,6 +26,7 @@ settings.configure(
 
         'rest_framework.authtoken',
     ),
+    ROOT_URLCONF = 'events.tests.urls',
     PASSWORD_HASHERS = ('django.contrib.auth.hashers.MD5PasswordHasher',),
     SITE_ID = 1,
     REST_FRAMEWORK={
