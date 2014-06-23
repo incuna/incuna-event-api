@@ -9,12 +9,13 @@ from .utils import APIRequestTestCase
 class TestEventView(APIRequestTestCase):
     view_class = views.EventView
 
-    def test_create(self):
+    def setUp(self):
         request = self.create_request()
-        dummy = factories.DummyFactory.create()
-        data = {'object': dummy.get_absolute_url(request)}
+        self.dummy = factories.DummyFactory.create()
+        self.data = {'object': self.dummy.get_absolute_url(request)}
 
-        request = self.create_request('post', data=data)
+    def test_create(self):
+        request = self.create_request('post', data=self.data)
         view = self.view_class.as_view()
         response = view(request)
         self.assertEqual(
@@ -24,5 +25,11 @@ class TestEventView(APIRequestTestCase):
         )
 
         event = models.Event.objects.get()
-        self.assertEqual(event.object, dummy)
+        self.assertEqual(event.object, self.dummy)
         self.assertEqual(event.user, request.user)
+
+    def test_create_anonymous_user(self):
+        request = self.create_request('post', auth=False, data=self.data)
+        view = self.view_class.as_view()
+        response = view(request)
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
